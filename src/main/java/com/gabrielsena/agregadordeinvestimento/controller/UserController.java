@@ -1,5 +1,6 @@
 package com.gabrielsena.agregadordeinvestimento.controller;
 
+import com.gabrielsena.agregadordeinvestimento.controller.DTOS.AccountResponseDTO;
 import com.gabrielsena.agregadordeinvestimento.controller.DTOS.CreateAccountDTO;
 import com.gabrielsena.agregadordeinvestimento.controller.DTOS.CreateUserDTO;
 import com.gabrielsena.agregadordeinvestimento.controller.DTOS.UpdateUserDTO;
