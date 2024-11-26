@@ -1,7 +1,8 @@
 package com.gabrielsena.agregadordeinvestimento.controller;
 
-import com.gabrielsena.agregadordeinvestimento.DTOS.CreateUserDTO;
-import com.gabrielsena.agregadordeinvestimento.DTOS.UpdateUserDTO;
+import com.gabrielsena.agregadordeinvestimento.controller.DTOS.CreateAccountDTO;
+import com.gabrielsena.agregadordeinvestimento.controller.DTOS.CreateUserDTO;
+import com.gabrielsena.agregadordeinvestimento.controller.DTOS.UpdateUserDTO;
 import com.gabrielsena.agregadordeinvestimento.entity.User;
 import com.gabrielsena.agregadordeinvestimento.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController()
-@RequestMapping("/api/v1/user")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     private UserService userService;
@@ -55,5 +56,13 @@ public class UserController {
 
         userService.updateUserById(id, updateUserDTO);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{userId}/accounts")
+    public ResponseEntity<Void> createAccount (@PathVariable("userId") String userId,
+                                           @RequestBody CreateAccountDTO createAccountDTO) {
+
+        userService.createAccount(userId, createAccountDTO);
+        return ResponseEntity.ok().build();
     }
 }

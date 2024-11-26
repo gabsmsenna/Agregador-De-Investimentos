@@ -1,4 +1,4 @@
-package com.gabrielsena.agregadordeinvestimento.DTOS;
+package com.gabrielsena.agregadordeinvestimento.controller.DTOS;
 
 public record CreateUserDTO(String username, String email, String password) {
 }

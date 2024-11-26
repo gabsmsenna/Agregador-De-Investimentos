@@ -40,6 +40,12 @@ public class User {
     @OneToMany(mappedBy = "user") //UM user possui UMA OU MAIS accounts
     private List<Account> accounts;
 
-
-
+    public User(UUID userId, String username, String email, String password, Instant creationTimeStamp, Instant updatedTimeStamp) {
+        this.userId = userId;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.creationTimeStamp = creationTimeStamp;
+        this.updatedTimeStamp = updatedTimeStamp;
+    }
 }
