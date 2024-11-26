@@ -1,4 +1,4 @@
-package com.gabrielsena.agregadordeinvestimento.controller;
+package com.gabrielsena.agregadordeinvestimento.controller.DTOS;
 
 public record AccountResponseDTO(
         String accountId,
