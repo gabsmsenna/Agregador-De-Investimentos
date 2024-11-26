@@ -1,6 +1,7 @@
 package com.gabrielsena.agregadordeinvestimento.service;
 
 
+import com.gabrielsena.agregadordeinvestimento.controller.AccountResponseDTO;
 import com.gabrielsena.agregadordeinvestimento.controller.DTOS.CreateAccountDTO;
 import com.gabrielsena.agregadordeinvestimento.controller.DTOS.CreateUserDTO;
 import com.gabrielsena.agregadordeinvestimento.controller.DTOS.UpdateUserDTO;
@@ -112,5 +113,17 @@ public class UserService {
         );
 
         billingAdressRepository.save(billingAdress);
+    }
+
+    public List<AccountResponseDTO> listAccounts(String userId) {
+        var user = userRepository.findById(UUID.fromString(userId))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        return user.getAccounts()
+                .stream()
+                .map(account -> new AccountResponseDTO(
+                        account.getAccountId().toString(),
+                        account.getDescription()))
+                .toList();
     }
 }
