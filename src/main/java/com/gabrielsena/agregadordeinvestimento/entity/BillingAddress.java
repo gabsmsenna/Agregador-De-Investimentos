@@ -7,17 +7,16 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tb_billingadress")
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class BillingAdress {
+public class BillingAddress {
 
     @Id
     @Column(name = "account_id")
     private UUID id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id")
     @MapsId
     private Account account;
@@ -26,5 +25,12 @@ public class BillingAdress {
     private String street;
 
     @Column(name = "number")
-    private String number;
+    private Integer number;
+
+    public BillingAddress(UUID id, Account account, String street, Integer number) {
+        this.id = id;
+        this.account = account;
+        this.street = street;
+        this.number = number;
+    }
 }

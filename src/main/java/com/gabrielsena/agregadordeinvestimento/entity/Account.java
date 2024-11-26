@@ -1,6 +1,8 @@
 package com.gabrielsena.agregadordeinvestimento.entity;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -19,13 +21,19 @@ public class Account {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(mappedBy = "account")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "account")
     @PrimaryKeyJoinColumn
-    private BillingAdress billingAdress;
+    private BillingAddress billingAddress;
 
-    public Account(UUID accountId, String description) {
+    @OneToMany(mappedBy = "account")
+    private List<AccountStock> accountStocks;
+
+    public Account(UUID accountId, User user, BillingAddress billingAddress, String description, List<AccountStock> accountStocks) {
         this.accountId = accountId;
+        this.user = user;
+        this.billingAddress = billingAddress;
         this.description = description;
+        this.accountStocks = accountStocks;
     }
 
     public Account() {}
