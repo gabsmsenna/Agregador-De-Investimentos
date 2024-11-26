@@ -1,6 +1,6 @@
 package com.gabrielsena.agregadordeinvestimento.service;
 
-import com.gabrielsena.agregadordeinvestimento.DTOS.CreateUserDTO;
+import com.gabrielsena.agregadordeinvestimento.controller.DTOS.CreateUserDTO;
 import com.gabrielsena.agregadordeinvestimento.entity.User;
 import com.gabrielsena.agregadordeinvestimento.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;
