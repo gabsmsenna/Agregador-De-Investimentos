@@ -2,6 +2,7 @@ package com.gabrielsena.agregadordeinvestimento.controller;
 
 import com.gabrielsena.agregadordeinvestimento.controller.DTOS.AccountStockResponseDTO;
 import com.gabrielsena.agregadordeinvestimento.controller.DTOS.AssociateAccountStockDTO;
+import com.gabrielsena.agregadordeinvestimento.service.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
