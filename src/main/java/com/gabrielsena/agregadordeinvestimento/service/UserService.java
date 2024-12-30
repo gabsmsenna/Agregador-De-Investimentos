@@ -11,6 +11,8 @@ import com.gabrielsena.agregadordeinvestimento.entity.User;
 import com.gabrielsena.agregadordeinvestimento.repository.AccountRepository;
 import com.gabrielsena.agregadordeinvestimento.repository.BillingAdressRepository;
 import com.gabrielsena.agregadordeinvestimento.repository.UserRepository;
+import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,6 +24,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class UserService {
 
     private UserRepository userRepository;
@@ -36,9 +39,11 @@ public class UserService {
         this.billingAdressRepository = billingAdressRepository;
     }
 
-    public UUID createUser(CreateUserDTO createUserDTO) {
-       var entity =  new User(
-                UUID.randomUUID(),
+    @Transactional
+    public User createUser(CreateUserDTO createUserDTO) {
+
+
+        var entity =  new User(
                 createUserDTO.username(),
                 createUserDTO.email(),
                 createUserDTO.password(),
@@ -46,8 +51,15 @@ public class UserService {
                 null
         );
 
-        var userSaved = userRepository.save(entity);
-        return userSaved.getUserId();
+//        User testUser = new User(UUID.randomUUID(),
+//                "testuser",
+//                "test@email.com",
+//                "123",
+//                Instant.now(),
+//                null);
+
+
+        return userRepository.save(entity);
     }
 
     public Optional<User>getUserById (String id) {
@@ -96,7 +108,6 @@ public class UserService {
         // DTO -> ENTITY
 
         var account = new Account(
-                UUID.randomUUID(),
                 user,
                 null,
                 createAccountDTO.description(),

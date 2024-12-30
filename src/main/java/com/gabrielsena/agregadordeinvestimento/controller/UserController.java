@@ -13,7 +13,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController()
-@RequestMapping("/api/v1/users")
+@RequestMapping("v1/users")
 public class UserController {
 
     private UserService userService;
@@ -23,9 +23,11 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody CreateUserDTO createUserDTO) {
-        var userId = userService.createUser(createUserDTO);
-        return ResponseEntity.created(URI.create("/v1/users/" + userId.toString())).build();
+    public ResponseEntity<Void> createUser(@RequestBody CreateUserDTO createUserDTO) {
+
+        var user = userService.createUser(createUserDTO);
+        System.out.println("Usuário salvo no banco de dados");
+        return ResponseEntity.created(URI.create("/v1/users/" + user.getUserId())).build();
     }
 
     @GetMapping("/{id}")

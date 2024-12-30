@@ -28,8 +28,7 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private List<AccountStock> accountStocks;
 
-    public Account(UUID accountId, User user, BillingAddress billingAddress, String description, List<AccountStock> accountStocks) {
-        this.accountId = accountId;
+    public Account(User user, BillingAddress billingAddress, String description, List<AccountStock> accountStocks) {
         this.user = user;
         this.billingAddress = billingAddress;
         this.description = description;
